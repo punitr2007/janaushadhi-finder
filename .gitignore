@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local runtime/generated data
+static/uploads/
+db/*.db
+db/*.db-shm
+db/*.db-wal

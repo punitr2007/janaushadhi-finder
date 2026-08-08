@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jan Aushadhi Finder — Generic Medicine Price Matcher</title>
+  <meta name="description" content="Find affordable generic medicine alternatives at Jan Aushadhi Kendras near you. Scan prescriptions, search by salt or brand name, and locate the nearest Pradhan Mantri Bhartiya Janaushadhi Pariyojana (PMBJP) store." />
+  <meta name="keywords" content="Jan Aushadhi, PMBJP, generic medicines, affordable medicines, medicine price, prescription scanner" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+<!-- ── Background Orbs ───────────────────────────────────────────────────── -->
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- ── Navbar ─────────────────────────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="logo" aria-label="Jan Aushadhi Finder Home">
+      <div class="logo-icon" aria-hidden="true">
+        <i class="fa-solid fa-pills"></i>
+      </div>
+      <div class="logo-text">
+        <span class="logo-main">Jan Aushadhi</span>
+        <span class="logo-sub">Generic Finder</span>
+      </div>
+    </a>
+    <div class="nav-stats" id="nav-stats" aria-live="polite">
+      <div class="stat-badge">
+        <i class="fa-solid fa-capsules" aria-hidden="true"></i>
+        <span id="stat-medicines">—</span> medicines
+      </div>
+      <div class="stat-badge">
+        <i class="fa-solid fa-store" aria-hidden="true"></i>
+        <span id="stat-kendras">—</span> kendras
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#search-section" class="nav-link">Search</a>
+      <a href="#scanner-section" class="nav-link">Scan Rx</a>
+      <a href="#kendra-section" class="nav-link">Find Kendra</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────────────────────────── -->
+<header class="hero" role="banner">
+  <div class="hero-content">
+    <div class="hero-badge" aria-label="Government of India initiative">
+      <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+      Pradhan Mantri Bhartiya Janaushadhi Pariyojana
+    </div>
+    <h1 class="hero-title">
+      Find Generic Medicines<br />
+      <span class="gradient-text">Save Up to 90%</span>
+    </h1>
+    <p class="hero-subtitle">
+      Scan your prescription or search any medicine by brand or salt name.
+      Instantly find affordable Jan Aushadhi generic equivalents and the
+      nearest Kendra in your area.
+    </p>
+
+    <!-- Quick search -->
+    <div class="hero-search-wrap">
+      <div class="quick-search-bar" role="search">
+        <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+        <input
+          id="hero-search-input"
+          type="search"
+          placeholder="Search by medicine, salt or brand (e.g. Paracetamol, Crocin…)"
+          autocomplete="off"
+          aria-label="Search medicines"
+          spellcheck="false"
+        />
+        <button id="hero-search-btn" class="btn-pill" aria-label="Search">
+          <span>Search</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div id="hero-autocomplete" class="autocomplete-dropdown" role="listbox" aria-label="Search suggestions"></div>
+    </div>
+
+    <!-- Hero actions -->
+    <div class="hero-actions">
+      <a href="#scanner-section" class="btn-glass">
+        <i class="fa-solid fa-camera" aria-hidden="true"></i>
+        Scan Prescription
+      </a>
+      <a href="#kendra-section" class="btn-glass">
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        Find Nearest Kendra
+      </a>
+    </div>
+
+    <!-- Savings banner -->
+    <div class="savings-chips" role="list" aria-label="Average savings examples">
+      <div class="savings-chip" role="listitem">
+        <span class="chip-drug">Atorvastatin 20mg</span>
+        <span class="chip-saving">Save ₹350/month</span>
+      </div>
+      <div class="savings-chip" role="listitem">
+        <span class="chip-drug">Metformin 500mg</span>
+        <span class="chip-saving">Save ₹120/month</span>
+      </div>
+      <div class="savings-chip" role="listitem">
+        <span class="chip-drug">Pantoprazole 40mg</span>
+        <span class="chip-saving">Save ₹280/month</span>
+      </div>
+      <div class="savings-chip" role="listitem">
+        <span class="chip-drug">Azithromycin 500mg</span>
+        <span class="chip-saving">Save ₹180/course</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="floating-card fc-1">
+      <div class="fc-label">Generic Alternative</div>
+      <div class="fc-drug">Atorvastatin 20mg</div>
+      <div class="fc-price">₹42 <span class="fc-vs">vs</span> <s>₹504</s></div>
+      <div class="fc-badge">91% cheaper</div>
+    </div>
+    <div class="floating-card fc-2">
+      <div class="fc-label">Nearest Kendra</div>
+      <div class="fc-kendra">MG Road, Bengaluru</div>
+      <div class="fc-distance">0.8 km away</div>
+    </div>
+    <div class="floating-card fc-3">
+      <div class="fc-label">OCR Detected</div>
+      <div class="fc-drug">Paracetamol 500mg</div>
+      <div class="fc-badge">Printed label ✓</div>
+    </div>
+    <div class="pulse-ring"></div>
+  </div>
+</header>
+
+<!-- ── How It Works ────────────────────────────────────────────────────────── -->
+<section class="how-it-works" aria-labelledby="hiw-title">
+  <div class="container">
+    <h2 id="hiw-title" class="section-title">How It Works</h2>
+    <p class="section-sub">Three simple steps to big savings</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-camera-retro"></i></div>
+        <div class="step-num">01</div>
+        <h3>Scan or Search</h3>
+        <p>Upload a photo of your prescription strip or type any brand/salt name</p>
+      </div>
+      <div class="step-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="step-card">
+        <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-vial-circle-check"></i></div>
+        <div class="step-num">02</div>
+        <h3>Match Generics</h3>
+        <p>Our engine fuzzy-matches the active salt composition against 2,500+ Jan Aushadhi medicines</p>
+      </div>
+      <div class="step-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="step-card">
+        <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-store"></i></div>
+        <div class="step-num">03</div>
+        <h3>Find Kendra</h3>
+        <p>Enter your PIN code — we show the nearest Jan Aushadhi Kendras with address and phone</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Medicine Search Section ────────────────────────────────────────────── -->
+<section class="section-panel" id="search-section" aria-labelledby="search-title">
+  <div class="container">
+    <div class="panel-header">
+      <div class="panel-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      <div>
+        <h2 id="search-title" class="panel-title">Search Generic Medicines</h2>
+        <p class="panel-sub">By brand name, salt/generic name, or drug category</p>
+      </div>
+    </div>
+
+    <div class="search-controls">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-pills" aria-hidden="true"></i>
+        <input
+          id="main-search-input"
+          type="search"
+          placeholder="e.g. Crocin, Paracetamol, Atorvastatin, Dolo 650…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search medicine by name or salt"
+        />
+        <button id="main-search-btn" class="btn-primary" aria-label="Search medicines">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Search
+        </button>
+      </div>
+      <div class="search-tags" role="group" aria-label="Quick search suggestions">
+        <span class="tag-label">Try:</span>
+        <button class="quick-tag" data-q="Paracetamol" type="button">Paracetamol</button>
+        <button class="quick-tag" data-q="Atorvastatin" type="button">Atorvastatin</button>
+        <button class="quick-tag" data-q="Metformin" type="button">Metformin</button>
+        <button class="quick-tag" data-q="Pantoprazole" type="button">Pantoprazole</button>
+        <button class="quick-tag" data-q="Azithromycin" type="button">Azithromycin</button>
+        <button class="quick-tag" data-q="Amoxicillin" type="button">Amoxicillin</button>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="search-results" class="results-area" role="region" aria-live="polite" aria-label="Search results">
+      <div class="results-empty" id="search-empty">
+        <i class="fa-solid fa-magnifying-glass-arrow-right" aria-hidden="true"></i>
+        <p>Search for any medicine above to see Jan Aushadhi generics</p>
+      </div>
+      <div id="search-loading" class="loading-state" style="display:none" aria-label="Searching…">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Searching database…</p>
+      </div>
+      <div id="search-cards" class="medicine-cards-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OCR Scanner Section ─────────────────────────────────────────────────── -->
+<section class="section-panel section-dark" id="scanner-section" aria-labelledby="scanner-title">
+  <div class="container">
+    <div class="panel-header">
+      <div class="panel-icon accent-orange" aria-hidden="true"><i class="fa-solid fa-camera"></i></div>
+      <div>
+        <h2 id="scanner-title" class="panel-title">Prescription / Strip Scanner</h2>
+        <p class="panel-sub">Upload a photo — our OCR engine reads medicine names automatically</p>
+      </div>
+    </div>
+
+    <div class="scanner-grid">
+      <!-- Upload zone -->
+      <div class="upload-zone" id="upload-zone" role="button" tabindex="0"
+           aria-label="Click or drag to upload prescription image">
+        <input type="file" id="file-input" accept="image/*" aria-label="Upload prescription image" />
+        <div class="upload-content" id="upload-content">
+          <div class="upload-icon-wrap" aria-hidden="true">
+            <div class="scan-ring"></div>
+            <i class="fa-solid fa-file-prescription upload-main-icon"></i>
+          </div>
+          <h3>Drop prescription photo here</h3>
+          <p>or click to browse — JPG, PNG, HEIC supported</p>
+          <div class="upload-formats" aria-label="Supported formats">
+            <span>Printed Labels</span>
+            <span>Medicine Strips</span>
+            <span>Doctor Rx</span>
+          </div>
+        </div>
+        <div class="upload-preview" id="upload-preview" style="display:none">
+          <img id="preview-img" src="" alt="Uploaded prescription preview" />
+          <button class="btn-remove-img" id="remove-img" aria-label="Remove image">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- OCR results panel -->
+      <div class="ocr-results-panel">
+        <div id="ocr-idle" class="ocr-idle-state">
+          <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+          <p>Upload an image to start scanning</p>
+          <ul class="ocr-tips">
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Ensure good lighting</li>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Hold camera steady</li>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Keep text in frame</li>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Works on printed labels best</li>
+          </ul>
+        </div>
+        <div id="ocr-scanning" class="ocr-scanning-state" style="display:none" aria-live="polite">
+          <div class="scan-animation" aria-hidden="true">
+            <div class="scan-bar"></div>
+          </div>
+          <p>Scanning prescription…</p>
+        </div>
+        <div id="ocr-output" class="ocr-output-state" style="display:none">
+          <h3 id="ocr-count-label" aria-live="polite"></h3>
+          <div id="ocr-suggestions" class="ocr-suggestion-list"></div>
+          <div id="ocr-raw-text" class="ocr-raw-text-box" style="display:none"></div>
+          <button id="toggle-raw-text" class="btn-link" style="display:none">
+            <i class="fa-solid fa-code" aria-hidden="true"></i> Toggle raw OCR text
+          </button>
+        </div>
+        <div id="ocr-error" class="ocr-error-state" style="display:none" role="alert">
+          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+          <p id="ocr-error-msg"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ocr-action-row" id="ocr-action-row" style="display:none">
+      <button id="scan-btn" class="btn-primary btn-large" aria-label="Scan uploaded image">
+        <i class="fa-solid fa-microscope" aria-hidden="true"></i>
+        Scan Now
+      </button>
+    </div>
+
+    <div class="ocr-disclaimer">
+      <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+      Works best on printed labels and medicine strips. Handwritten prescriptions may have lower accuracy.
+      Always verify with a pharmacist before purchase.
+    </div>
+  </div>
+</section>
+
+<!-- ── Kendra Finder Section ───────────────────────────────────────────────── -->
+<section class="section-panel" id="kendra-section" aria-labelledby="kendra-title">
+  <div class="container">
+    <div class="panel-header">
+      <div class="panel-icon accent-green" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+      <div>
+        <h2 id="kendra-title" class="panel-title">Find Nearest Jan Aushadhi Kendra</h2>
+        <p class="panel-sub">Enter your PIN code to locate the nearest store in your area</p>
+      </div>
+    </div>
+
+    <div class="kendra-search-form" role="form" aria-label="Kendra location search">
+      <div class="kendra-inputs">
+        <div class="input-group">
+          <label for="pin-input">
+            <i class="fa-solid fa-hashtag" aria-hidden="true"></i> PIN Code
+          </label>
+          <input
+            id="pin-input"
+            type="text"
+            inputmode="numeric"
+            maxlength="6"
+            pattern="[0-9]{6}"
+            placeholder="e.g. 110001"
+            aria-label="Enter 6-digit PIN code"
+          />
+        </div>
+        <div class="input-group">
+          <label for="state-select">
+            <i class="fa-solid fa-map" aria-hidden="true"></i> State (optional)
+          </label>
+          <select id="state-select" aria-label="Select state">
+            <option value="">— Select State —</option>
+          </select>
+        </div>
+        <button id="find-kendra-btn" class="btn-primary" aria-label="Find nearest kendras">
+          <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+          Find Kendras
+        </button>
+      </div>
+    </div>
+
+    <!-- Kendra results -->
+    <div id="kendra-results" class="results-area" role="region" aria-live="polite" aria-label="Kendra search results">
+      <div class="results-empty" id="kendra-empty">
+        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+        <p>Enter your PIN code to find nearby Jan Aushadhi Kendras</p>
+        <p class="results-empty-sub">Over 13,800+ stores across India</p>
+      </div>
+      <div id="kendra-loading" class="loading-state" style="display:none" aria-label="Searching kendras…">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Locating nearest kendras…</p>
+      </div>
+      <div id="kendra-cards" class="kendra-cards-grid"></div>
+    </div>
+
+    <div class="kendra-disclaimer">
+      <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+      Kendra data is sourced from PMBI official records. Stock availability is not tracked in real time —
+      please call ahead to confirm specific medicines. Data last updated: <strong>{{ data_date }}</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ── Medicine Detail Modal ───────────────────────────────────────────────── -->
+<div id="medicine-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-drug-name" style="display:none">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close-btn" aria-label="Close medicine details">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+    <div class="modal-header">
+      <div class="modal-category-badge" id="modal-category"></div>
+      <h2 id="modal-drug-name"></h2>
+      <p id="modal-salt" class="modal-salt"></p>
+    </div>
+    <div class="modal-body">
+      <div class="modal-price-block">
+        <div class="price-card ja-price">
+          <div class="price-label">Jan Aushadhi Price</div>
+          <div class="price-amount" id="modal-ja-price"></div>
+          <div class="price-sub" id="modal-unit-size"></div>
+        </div>
+        <div class="price-vs" aria-hidden="true">vs</div>
+        <div class="price-card brand-price">
+          <div class="price-label">Est. Branded Price</div>
+          <div class="price-amount" id="modal-brand-price"></div>
+          <div class="price-sub">approx. market rate</div>
+        </div>
+      </div>
+      <div class="modal-savings-bar">
+        <div class="savings-fill" id="modal-savings-fill"></div>
+        <span class="savings-label" id="modal-savings-label"></span>
+      </div>
+      <div class="modal-details-grid">
+        <div class="modal-detail">
+          <i class="fa-solid fa-capsules" aria-hidden="true"></i>
+          <span class="detail-label">Form</span>
+          <span id="modal-form"></span>
+        </div>
+        <div class="modal-detail">
+          <i class="fa-solid fa-box" aria-hidden="true"></i>
+          <span class="detail-label">Pack Size</span>
+          <span id="modal-pack"></span>
+        </div>
+        <div class="modal-detail">
+          <i class="fa-solid fa-tag" aria-hidden="true"></i>
+          <span class="detail-label">Drug Code</span>
+          <span id="modal-code"></span>
+        </div>
+      </div>
+      <div class="modal-brands-section">
+        <h3><i class="fa-solid fa-store" aria-hidden="true"></i> Common Brand Equivalents</h3>
+        <div id="modal-brands" class="brand-chips"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" id="modal-find-kendra-btn" aria-label="Find nearby kendra for this medicine">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          Find Nearby Kendra
+        </button>
+        <a id="modal-maps-btn" href="#" target="_blank" class="btn-glass" rel="noopener"
+           aria-label="Search on Google Maps">
+          <i class="fa-solid fa-map" aria-hidden="true"></i>
+          Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-icon" aria-hidden="true"><i class="fa-solid fa-pills"></i></div>
+        <div class="logo-text">
+          <span class="logo-main">Jan Aushadhi Finder</span>
+          <span class="logo-sub">Generic Medicine Price Matcher</span>
+        </div>
+      </div>
+      <p>Helping patients access affordable generic medicines through India's PMBJP programme.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="https://janaushadhi.gov.in" target="_blank" rel="noopener">Official PMBI Portal</a>
+        <a href="https://janaushadhi.gov.in/ProductList.aspx" target="_blank" rel="noopener">Medicine List</a>
+        <a href="https://umang.gov.in" target="_blank" rel="noopener">UMANG App</a>
+      </div>
+      <div class="footer-col">
+        <h4>Disclaimer</h4>
+        <p class="footer-note">This is an independent tool. Medicine data is sourced from official PMBI records.
+        Stock availability may vary. Always consult a pharmacist or physician before changing medication.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Data: PMBI Jan Aushadhi Product Basket &bull; Updated: {{ data_date }} &bull; 13,800+ Kendras across India</p>
+  </div>
+</footer>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
